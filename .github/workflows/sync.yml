@@ -1,8 +1,13 @@
 name: Sync Fork
 
 on:
+  push:
+    branches:
+      - master
   schedule:
-    - cron: '0 0 * * *'  # Jalankan setiap hari pada pukul 00:00 UTC
+    - cron: "0 17 30 4,6,9,11 *"  # Setiap tanggal 30 pada bulan April, Juni, September, dan November
+    - cron: "0 17 31 1,3,5,7,8,10,12 *"  # Setiap tanggal 31 pada bulan Januari, Maret, Mei, Juli, Agustus, Oktober, dan Desember
+    - cron: "0 17 28,29 2 *"  # Setiap tanggal 28 dan 29 pada bulan Februari
   workflow_dispatch:  # Bisa juga dijalankan secara manual
 
 jobs:
@@ -21,7 +26,7 @@ jobs:
 
       - name: Add Upstream Remote
         run: |
-          git remote add upstream https://github.com/lakuapik/jadwalsholatorg.git || git remote set-url upstream https://github.com/OWNER/REPO.git
+          git remote add upstream https://github.com/lakuapik/jadwalsholatorg.git || git remote set-url upstream https://github.com/lakuapik/jadwalsholatorg.git
           git fetch upstream
 
       - name: Merge Upstream Changes
