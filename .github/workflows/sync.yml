@@ -23,7 +23,10 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
+      
+      - name: Fix Git Safe Directory Issue
+        run: git config --global --add safe.directory /github/workspace
+  
       - name: Add Upstream Remote
         run: |
           git remote add upstream https://github.com/lakuapik/jadwalsholatorg.git || git remote set-url upstream https://github.com/lakuapik/jadwalsholatorg.git
